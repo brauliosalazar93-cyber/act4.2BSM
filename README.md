@@ -1,76 +1,82 @@
-# Actividad Base: Flask + DataXY
+# Actividad 4.2 — Visualización de Datos X-Y con Flask
 
-Este repositorio es un ejemplo inicial para practicar con **Flask** y **GitHub**.
-La intensión es que los estudiantes lo usen como punto de partida, lo modifiquen y luego lo suban a su propio repositorio.
+**Alumno:** Braulio Salazar  
+**Asignatura:** Desarrollo de Software para Hardware  
+**Evaluación:** Sumativa 4.2
 
 ---
 
-## Objetivo
+## Descripción
 
-* Clonar el repositorio y trabajar en una copia personal
-* Ejecutar Flask y recibir datos **x, y** desde una aplicación móvil
-* Visualizar datos en una página HTML sencilla
-* Subir cambios a GitHub
+Aplicación web desarrollada con **Flask** y **Jinja2** que recibe datos X e Y desde una aplicación móvil (APK) a través de un socket TCP, y los visualiza en tiempo real en el navegador mediante tres vistas distintas accesibles desde una página de inicio.
+
+---
+
+## Tecnologías utilizadas
+
+- Python 3 + Flask
+- HTML + CSS (dentro de `<head>`, usando únicamente selectores `id`)
+- Jinja2
+- Socket TCP
+
+> No se utiliza JavaScript en ninguna vista.
+
+---
+
+## Estructura del proyecto
+
+```
+actividad_4.2_jesa/
+├── app.py
+├── README.md
+├── capturas/
+│   ├── archivos-base.png
+│   └── vista-base.png
+└── templates/
+    ├── index.html   → Página de inicio
+    ├── page1.html   → Vista Matriz 4×4
+    ├── page2.html   → Vista Brújula
+    └── page3.html   → Vista Barras
+```
+
+---
+
+## Vistas disponibles
+
+### `/` — Página de inicio
+Menú principal con tarjetas de acceso a cada una de las tres vistas de visualización.
+
+### `/page1` — Matriz 4×4
+Grilla de 16 celdas (4 filas × 4 columnas). El eje X determina la columna y el eje Y determina la fila. La celda activa se ilumina en verde.
+
+### `/page2` — Brújula
+Vista 3×3 con puntos cardinales: N, S, E, O, NE, NO, SE, SO y Centro. Representa la dirección del movimiento del sensor. La celda activa se ilumina en azul.
+
+### `/page3` — Barras
+Dos barras segmentadas en 4 niveles: una horizontal para el eje X y una vertical para el eje Y. El segmento activo se ilumina en naranja.
+
+Todas las vistas incluyen navegación hacia las demás páginas y se actualizan automáticamente cada 2 segundos.
 
 ---
 
 ## Requisitos
 
-* Entorno para Python y Flask instalados
-* Cuenta en GitHub
-* Aplicación móvil (APK) para enviar datos
+- Python 3 con Flask instalado
+- Red local compartida entre el computador y el dispositivo móvil
+- Aplicación APK para enviar datos X-Y (disponible con el docente)
 
 ---
 
-## Descarga de Aplicación APK
-
-Se puede descargar la aplicación móvil desde aquí:
-
-[Descargar XYaTCPfull.apk](./XYaTCPfull.apk)
-
----
-
-## Pasos básicos
-
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/jotaefepece/Actividad-dataXY-base
-cd Actividad-dataXY-base
-```
-
-### 2. Instalar y ejecutar la aplicación apk
-
-```bash
-### La red del celular tiene que estar en la misma red local ###
-```
-
-### 3. Ejecutar Flask
+## Ejecución
 
 ```bash
 python3 app.py
 ```
 
-### 4. Probar en el navegador
+Luego acceder en el navegador a:
 
 ```
 http://127.0.0.1:5000
-```
-
----
-
-## Estructura del ejercicio
-
-```bash
-.
-├── app.py
-├── capturas
-│   ├── archivos-base.png
-│   └── vista-base.png
-├── README.md
-├── templates
-│   └── index.html
-└── XYaTCPfull.apk
 ```
 
 ---
@@ -81,27 +87,6 @@ http://127.0.0.1:5000
 
 ![Estructura de los archivos](capturas/archivos-base.png)
 
----
-
-### Vista en el navegador
+### Vista base en el navegador
 
 ![Vista HTML](capturas/vista-base.png)
-
----
-
-## Inicio del ejercicio
-
-Cada estudiante debe:
-
-* Crear una pestaña en Flask que muestre un dato recibido
-* Modificar el HTML para encender una celda en un rectángulo **2x2** según los valores **x, y**
-* Subir su versión modificada a su propio repositorio
-
----
-
-## Notas
-
-* Este README es solo una guía básica.
-* El trabajo final depende de cada estudiante y de cómo adapte el ejercicio.
-
----

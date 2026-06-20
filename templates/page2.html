@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="2">
+    <style>
+        #pagina {
+            font-family: Arial, sans-serif;
+            background-color: #0d1b2a;
+            color: #eee;
+            padding: 24px;
+            margin: 0;
+        }
+        #titulo { color: #4cc9f0; margin-bottom: 4px; }
+        #nombre { color: #a8dadc; font-size: 20px; margin-top: 0; margin-bottom: 8px; }
+        #descripcion {
+            color: #aaa;
+            font-size: 14px;
+            max-width: 520px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        #nav { margin-bottom: 24px; }
+        #nav-inicio {
+            padding: 8px 18px;
+            background-color: #1d3557;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p1 {
+            padding: 8px 18px;
+            background-color: #1d3557;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p2 {
+            padding: 8px 18px;
+            background-color: #4cc9f0;
+            color: #0d1b2a;
+            text-decoration: none;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        #nav-p3 {
+            padding: 8px 18px;
+            background-color: #1d3557;
+            color: #a8dadc;
+            text-decoration: none;
+        }
+        #valores { margin-bottom: 16px; font-size: 16px; }
+        #val-x { margin: 4px 0; }
+        #val-y { margin: 4px 0; }
+        #tabla { border-collapse: collapse; }
+        {% for r in range(3) %}{% for c in range(3) %}
+        #z{{ r }}{{ c }} {
+            width: 110px;
+            height: 110px;
+            border: 2px solid #1d3557;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: {% if r == fila and c == col %}#4cc9f0{% else %}#112030{% endif %};
+            color: {% if r == fila and c == col %}#0d1b2a{% else %}#2a4060{% endif %};
+        }
+        {% endfor %}{% endfor %}
+    </style>
+</head>
+<body id="pagina">
+    <h1 id="titulo">Vista Brújula — Datos X-Y</h1>
+    <h2 id="nombre">Jorge Sepúlveda — Actividad 4.2</h2>
+    <p id="descripcion">
+        La posición del sensor se representa como una dirección en una brújula 3×3.
+        La celda central indica reposo; las celdas del borde indican la dirección del movimiento
+        (Norte, Sur, Este, Oeste y diagonales). La celda activa se ilumina en azul.
+        La vista se actualiza cada 2 segundos.
+    </p>
+    <div id="nav">
+        <a id="nav-inicio" href="/">Inicio</a>
+        <a id="nav-p1" href="/page1">Matriz 4×4</a>
+        <a id="nav-p2" href="/page2">Brújula</a>
+        <a id="nav-p3" href="/page3">Barras</a>
+    </div>
+    <div id="valores">
+        <p id="val-x">X = {{ ejeX }}</p>
+        <p id="val-y">Y = {{ ejeY }}</p>
+    </div>
+    <table id="tabla">
+        <tr>
+            <td id="z00">NO</td>
+            <td id="z01">N</td>
+            <td id="z02">NE</td>
+        </tr>
+        <tr>
+            <td id="z10">O</td>
+            <td id="z11">C</td>
+            <td id="z12">E</td>
+        </tr>
+        <tr>
+            <td id="z20">SO</td>
+            <td id="z21">S</td>
+            <td id="z22">SE</td>
+        </tr>
+    </table>
+</body>
+</html>

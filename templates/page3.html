@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="2">
+    <style>
+        #pagina {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #eee;
+            padding: 24px;
+            margin: 0;
+        }
+        #titulo { color: #ff9f1c; margin-bottom: 4px; }
+        #nombre { color: #a8dadc; font-size: 20px; margin-top: 0; margin-bottom: 8px; }
+        #descripcion {
+            color: #aaa;
+            font-size: 14px;
+            max-width: 520px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        #nav { margin-bottom: 24px; }
+        #nav-inicio {
+            padding: 8px 18px;
+            background-color: #2a2a2a;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p1 {
+            padding: 8px 18px;
+            background-color: #2a2a2a;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p2 {
+            padding: 8px 18px;
+            background-color: #2a2a2a;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p3 {
+            padding: 8px 18px;
+            background-color: #ff9f1c;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #valores { margin-bottom: 20px; font-size: 16px; }
+        #val-x { margin: 4px 0; }
+        #val-y { margin: 4px 0; }
+        #label-x { font-size: 14px; color: #ff9f1c; margin-bottom: 8px; font-weight: bold; }
+        #tabla-x { border-collapse: collapse; margin-bottom: 32px; }
+        #label-y { font-size: 14px; color: #ff9f1c; margin-bottom: 8px; font-weight: bold; }
+        #tabla-y { border-collapse: collapse; }
+        #bx0 {
+            width: 120px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_x == 0 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_x == 0 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #bx1 {
+            width: 120px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_x == 1 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_x == 1 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #bx2 {
+            width: 120px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_x == 2 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_x == 2 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #bx3 {
+            width: 120px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_x == 3 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_x == 3 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #by0 {
+            width: 160px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_y == 0 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_y == 0 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #by1 {
+            width: 160px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_y == 1 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_y == 1 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #by2 {
+            width: 160px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_y == 2 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_y == 2 %}#1a1a1a{% else %}#555{% endif %};
+        }
+        #by3 {
+            width: 160px; height: 55px;
+            border: 2px solid #333;
+            text-align: center; vertical-align: middle;
+            font-size: 12px; font-weight: bold;
+            background-color: {% if seg_y == 3 %}#ff9f1c{% else %}#2a2a2a{% endif %};
+            color: {% if seg_y == 3 %}#1a1a1a{% else %}#555{% endif %};
+        }
+    </style>
+</head>
+<body id="pagina">
+    <h1 id="titulo">Vista Barras — Datos X-Y</h1>
+    <h2 id="nombre">Jorge Sepúlveda — Actividad 4.2</h2>
+    <p id="descripcion">
+        Los valores X e Y se visualizan como indicadores de nivel en barras segmentadas.
+        La barra horizontal muestra el eje X (izquierda = negativo, derecha = positivo)
+        y la barra vertical muestra el eje Y (arriba = positivo, abajo = negativo).
+        El segmento activo se ilumina en naranja. La vista se actualiza cada 2 segundos.
+    </p>
+    <div id="nav">
+        <a id="nav-inicio" href="/">Inicio</a>
+        <a id="nav-p1" href="/page1">Matriz 4×4</a>
+        <a id="nav-p2" href="/page2">Brújula</a>
+        <a id="nav-p3" href="/page3">Barras</a>
+    </div>
+    <div id="valores">
+        <p id="val-x">X = {{ ejeX }}</p>
+        <p id="val-y">Y = {{ ejeY }}</p>
+    </div>
+
+    <p id="label-x">Eje X — Horizontal</p>
+    <table id="tabla-x">
+        <tr>
+            <td id="bx0">◄◄ Izq<br>X &lt; -0.5</td>
+            <td id="bx1">◄ Neg<br>-0.5 a 0</td>
+            <td id="bx2">Pos ►<br>0 a 0.5</td>
+            <td id="bx3">Der ►►<br>X &gt; 0.5</td>
+        </tr>
+    </table>
+
+    <p id="label-y">Eje Y — Vertical</p>
+    <table id="tabla-y">
+        <tr><td id="by0">▲▲ Alto — Y &gt; 0.5</td></tr>
+        <tr><td id="by1">▲ Pos — 0 a 0.5</td></tr>
+        <tr><td id="by2">▼ Neg — -0.5 a 0</td></tr>
+        <tr><td id="by3">▼▼ Bajo — Y &lt; -0.5</td></tr>
+    </table>
+</body>
+</html>

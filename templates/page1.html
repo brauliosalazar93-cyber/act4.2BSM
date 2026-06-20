@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="2">
+    <style>
+        #pagina {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #eee;
+            padding: 24px;
+            margin: 0;
+        }
+        #titulo { color: #4CAF50; margin-bottom: 4px; }
+        #nombre { color: #a8dadc; font-size: 20px; margin-top: 0; margin-bottom: 8px; }
+        #descripcion {
+            color: #aaa;
+            font-size: 14px;
+            max-width: 520px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        #nav { margin-bottom: 24px; }
+        #nav-inicio {
+            padding: 8px 18px;
+            background-color: #16213e;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p1 {
+            padding: 8px 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        #nav-p2 {
+            padding: 8px 18px;
+            background-color: #16213e;
+            color: #a8dadc;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        #nav-p3 {
+            padding: 8px 18px;
+            background-color: #16213e;
+            color: #a8dadc;
+            text-decoration: none;
+        }
+        #valores { margin-bottom: 16px; font-size: 16px; }
+        #val-x { margin: 4px 0; }
+        #val-y { margin: 4px 0; }
+        #tabla { border-collapse: collapse; }
+        {% for r in range(4) %}{% for c in range(4) %}
+        #c{{ r }}{{ c }} {
+            width: 85px;
+            height: 85px;
+            border: 2px solid #2d2d44;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 11px;
+            background-color: {% if r == fila and c == col %}#4CAF50{% else %}#16213e{% endif %};
+            color: {% if r == fila and c == col %}#fff{% else %}#3a4060{% endif %};
+        }
+        {% endfor %}{% endfor %}
+    </style>
+</head>
+<body id="pagina">
+    <h1 id="titulo">Visualización Matriz 4×4</h1>
+    <h2 id="nombre">Jorge Sepúlveda — Actividad 4.2</h2>
+    <p id="descripcion">
+        Los valores X e Y recibidos desde el sensor determinan la celda activa en la grilla 4×4.
+        El eje X controla la columna (negativo = izquierda, positivo = derecha)
+        y el eje Y controla la fila (positivo = arriba, negativo = abajo).
+        La celda activa se ilumina en verde. La vista se actualiza cada 2 segundos.
+    </p>
+    <div id="nav">
+        <a id="nav-inicio" href="/">Inicio</a>
+        <a id="nav-p1" href="/page1">Matriz 4×4</a>
+        <a id="nav-p2" href="/page2">Brújula</a>
+        <a id="nav-p3" href="/page3">Barras</a>
+    </div>
+    <div id="valores">
+        <p id="val-x">X = {{ ejeX }}</p>
+        <p id="val-y">Y = {{ ejeY }}</p>
+    </div>
+    <table id="tabla">
+        {% for r in range(4) %}
+        <tr>
+            {% for c in range(4) %}
+            <td id="c{{ r }}{{ c }}">{{ r }},{{ c }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
